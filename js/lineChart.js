@@ -8,18 +8,20 @@
     context.fillStyle = '#f6f6f6';
     context.fillRect(0, 0, width, height);
 
-    drawline(stats, width, context);
+    drawline(stats, width, context, height);
     // ---------------  
     canvas.onmousemove = function (e) {
         var pageCrds = '(' + e.pageX + ', ' + e.pageY + ')',
             clientCrds = '(' + e.clientX + ', ' + e.clientY + ')';
             if(e.clientX >=65 && e.clientX <=85 && e.clientY >=30 && e.clientY <=50){
                 console.log('first position');
+                drawline(stats, width, context, height);
             }
     };
 })();
 
-function drawline(lineArray, cWidth, context) {
+function drawline(lineArray, cWidth, context, cHeight) {
+    context.clearRect(0,0,cWidth, cHeight);
     var left = 0,
         prev_stat = lineArray[0],
         move_left_by = cWidth / lineArray.length;
@@ -39,5 +41,4 @@ function drawline(lineArray, cWidth, context) {
         prev_stat = initPoint;
         left += move_left_by;
     }
-    console.log(nlarray);
 }
